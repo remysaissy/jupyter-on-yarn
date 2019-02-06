@@ -1,0 +1,16 @@
+name: jupyter-yarn
+
+services:
+  jupyter:
+    resources:
+      memory: 16 GiB
+      vcores: 16
+    env:
+      JUPYTER_CONFIG_DIR: 'environment/etc/jupyter'
+    files:
+      environment: jupyter-yarn.tar.gz
+    commands:
+      - export JUPYTER_CONFIG_DIR="$(pwd)/$JUPYTER_CONFIG_DIR"
+      - export CLASSPATH=`hadoop classpath --glob`
+      - source environment/bin/activate
+      - python -m skein.recipes.jupyter_notebook --config=$JUPYTER_CONFIG_DIR/jupyter_notebook_config.py
