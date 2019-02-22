@@ -20,6 +20,7 @@ cp $JUPYTER_CONFIG_FILE $ENVS_PREFIX/$ENV_NAME/.$ENV_NAME/etc/jupyter/
 # Environment packaging.
 pip install venv-pack
 venv-pack -o $ENVS_PREFIX/$ENV_NAME/$VENV_PACK_NAME
+python passwd.py
 deactivate
 
 echo "Creating the deployment file descriptor $DESCRIPTOR_FILE..."
